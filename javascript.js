@@ -21,7 +21,7 @@ angular.module('portalApp')
         // http.get FUNCTION 
         $http.get(url).success(function(result) {
             // Handle result 
-            $scope.mydata = result.data;
+            $scope.infosessions = result.data;
             console.log(result.data);
         });
     
