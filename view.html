@@ -1,7 +1,7 @@
 <script type="text/ng-template" id="main.html">
     <widget-row>
         <widget-cell>
-            <h2>Hello</h2>
+            <h2>Infosessions that fit your schedule</h2>
         </widget-cell>
     </widget-row>
 
@@ -9,7 +9,7 @@
         <widget-cell>
             <h2>{{data.value.message}}</h2>
 
-            <p ng-repeat="item in mydata" ng-if="item.date==todaysdate"> {{item.employer}} </p>
+            <p ng-repeat="item in mydata" ng-if="item.date==todaysdate"> <a href= "{{item.link}}"> {{item.employer}} </a> </p>
         </widget-cell>
     </widget-row>
 </script>
