@@ -14,7 +14,7 @@ angular.module('portalApp')
             // 
             $scope.portalHelpers.getApiData('student/meets?start=' + "2016-02-05" + '&end=' + "2016-02-06").then(function (result) {    		
 	            var classes = result.data;
-	            // console.log(infosessions.length);                
+	            //console.log(infosessions);                
 	            for(var i = 0; i < infosessions.length; i++){
 	             if(infosessions[i].date != todaysdate){
 	                 continue;
@@ -22,34 +22,52 @@ angular.module('portalApp')
 	                var currentInfoSession = infosessions[i];                    
 	                for(var j = 0; j < classes.length; j++){
 	                 var currentClass = classes[j];
-                     console.log(currentClass);
+                     //console.log(currentClass);
                      var nextClass = classes[j+1];
                         //BEFORE CASE
 	                 if(j==0 && currentInfoSession.end_time < currentClass.startDate.substring(11)){
-                        console.log('before case');
-						$scope.validInfoSessions.push(currentInfoSession);
-                        var course = currentClass.subject_code + " " + currentClass.catalog;
+                        //console.log('before case');
+                         var course = currentClass.subject_code + " " + currentClass.catalog;
                         currentInfoSession.beforeCase = course;
+                         for(var k = 0; k < currentInfoSession.audience.length; k++){
+                          	if(currentInfoSession.audience[k].contains(homeSettings.user.Faculty)){
+                          	currentInfoSession.targeted = true;
+                         	}
+                         }                         
+						$scope.validInfoSessions.push(currentInfoSession);
+                        
 	                 }               
                         //MIDDLE CASE                        
                      if(j!=classes.length-1 && currentInfoSession.start_time > currentClass.endDate.substring(11) &&
                        currentInfoSession.end_time <= nextClass.startDate.substring(11)){
-                        console.log('middle case');
-                        console.log(currentInfoSession.employer);
+                        //console.log('middle case');
+                        //console.log(currentInfoSession.employer);
                         var course = currentClass.subject_code + " " + currentClass.catalog;
                         var nextCourse = nextClass.subject_code + " " + nextClass.catalog;                         
                         currentInfoSession.beforeCase = course;
                         currentInfoSession.afterCase = nextCourse;
+                         for(var k = 0; k < currentInfoSession.audience.length; k++){
+                          	if(currentInfoSession.audience[k].contains(homeSettings.user.Faculty)){
+                          	currentInfoSession.targeted = true;
+                         	}
+                         }
                       	$scope.validInfoSessions.push(currentInfoSession);   
                         
                      }
                         
                      	//END CASE
                      if(j == classes.length-1 && currentInfoSession.start_time >= currentClass.startDate.substring(11)){
-                      	console.log('END CASE');
+                      	//console.log('END CASE');
 						var course = currentClass.subject_code + " " + currentClass.catalog;                         
                         currentInfoSession.afterCase = course;
-                         console.log(currentInfoSession);
+                         for(var k = 0; k < currentInfoSession.audience.length; k++){
+                             //console.log(currentInfoSession.audience[k]);
+                             //console.log(homeSettings.user.Faculty);
+                          	if(currentInfoSession.audience[k].contains(homeSettings.user.Faculty)){
+                          	currentInfoSession.targeted = true;
+                         	}
+                         }
+						//console.log(currentInfoSession);
                         $scope.validInfoSessions.push(currentInfoSession);                         
                      }
                          
