@@ -22,6 +22,7 @@ angular.module('portalApp')
         $http.get(url).success(function(result) {
             // Handle result 
             $scope.mydata = result.data;
+            console.log(result.data);
         });
     
     	
@@ -52,6 +53,10 @@ angular.module('portalApp')
     		//console.log('meets data: ', result);
             var classes = result.data;
     	});
+    
+    
+    
+    
     	
     }])
     // Factory maintains the state of the widget
