@@ -9,7 +9,7 @@
         <widget-cell>
             <h2>{{data.value.message}}</h2>
 
-            <p ng-repeat="item in mydata" ng-if="item.date==todaysdate"> <a href= "{{item.link}}"> {{item.employer}} </a> </p>
+            <p ng-repeat="item in infosessions" ng-if="item.date==todaysdate"> <a href= "{{item.link}}"> {{item.employer}} </a> </p>
         </widget-cell>
     </widget-row>
 </script>
