@@ -17,9 +17,10 @@
         <widget-cell>            
             <p ng-if="validInfoSessions.length == 0">Loading...</p>
             <p ng-repeat="item in validInfoSessions" ng-if="item.date==todaysdate">
-                <a href="{{item.link}}"> {{item.employer}} </a> <span ng-if="item.targeted">*</span>
+                <a href="{{item.link}}"><b> {{item.employer}} </b> </a> <span ng-if="item.targeted">*</span>
                 <widget-icon ng-if="!item.checked" name="check-empty" ng-click="switchChecked(item)"></widget-icon>
                 <widget-icon ng-if="item.checked" ng-click="switchChecked(item)" name="check-1"></widget-icon>
+                <span class="registration" ng-if="item.checked"><br><b> Registration Successful!</b> </span>
                 <br>
 
                 <span class="description" ng-if="item.beforeCase && !item.afterCase">You can attend this info session before: {{item.beforeCase}}</span>
