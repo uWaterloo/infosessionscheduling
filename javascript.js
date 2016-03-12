@@ -73,6 +73,13 @@ angular.module('portalApp')
                       	validInfoSessions.push(currentInfoSession);   
                      }
                         
+                     	//END CASE
+                     if(j == classes.length-1 && currentInfoSession.start_time >= currenClass.startDate.substring(11)){
+                      	console.log('END CASE');
+                        validInfoSessions.push(currentInfoSession);                         
+                     }
+                         
+                        
                        
                         
                         
