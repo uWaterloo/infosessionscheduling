@@ -35,7 +35,8 @@ angular.module('portalApp')
         var tomorrowsdate = year + "-" + month + "-" + tomorrowsDay;
 		//console.log(todaysdate);
     	//$scope.todaysdate = totaldate;
-    	$scope.todaysdate = "2016-03-07";
+    	$scope.todaysdate = "2016-03-01";
+    	var todaysdate = "2016-03-01";
     
     	var validInfoSessions = [];
     
@@ -48,9 +49,9 @@ angular.module('portalApp')
             var infosessions = result.data;
             // console.log(result.data);
             // 
-            $scope.portalHelpers.getApiData('student/meets?start=' + "2016-03-07" + '&end=' + "2016-03-08").then(function (result) {    		
+            $scope.portalHelpers.getApiData('student/meets?start=' + "2016-03-01" + '&end=' + "2016-03-02").then(function (result) {    		
 	            var classes = result.data;
-	            console.log(infosessions.length);                
+	            // console.log(infosessions.length);                
 	            for(var i = 0; i < infosessions.length; i++){
 	             if(infosessions[i].date != todaysdate){
 	                 continue;
@@ -58,11 +59,22 @@ angular.module('portalApp')
 	                var currentInfoSession = $scope.infosessions[i];                    
 	                for(var j = 0; j < classes.length; j++){
 	                 var currentClass = classes[j];
-	                 if(j==0){
-	                	if(currentInfoSession.end_time < currentClass.startDate.substring(11)){
-	                         console.log('valid info session');
-	                     }
-	                 }                                                                  
+                     var nextClass = classes[j+1];
+                        //BEFORE CASE
+	                 if(j==0 && currentInfoSession.end_time < currentClass.startDate.substring(11)){
+                        console.log('before case');
+						validInfoSessions.push(currentInfoSession);
+	                 }               
+                        //MIDDLE CASE
+                     if(currentInfoSession.start_time > currentClass.endDate.substring(11) &&
+                       currentInfoSession.end_time < nextClass.startDate.substring(11)){
+                        console.log('middle case');
+                      	validInfoSessions.push(currentInfoSession);   
+                     }
+                        
+                       
+                        
+                        
 	                }                                              
 	            }
 	    	});
