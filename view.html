@@ -4,27 +4,27 @@
             <h2>Infosessions that fit your schedule</h2>
         </widget-cell>
     </widget-row>
-    
+
     <widget-row class="text-center">
-             <widget-cell>
-             <widget-icon name="calendar"></widget-icon>
+        <widget-cell>
+            <widget-icon name="calendar"></widget-icon>
         </widget-cell>
-        </widget-row>
-           
+    </widget-row>
+
     <widget-row>
-   
+
 
         <widget-cell>
             <p ng-repeat="item in validInfoSessions" ng-if="item.date==todaysdate">
-                <a href= "{{item.link}}"> {{item.employer}} </a> 
+                <a href="{{item.link}}"> {{item.employer}} </a>
                 <widget-icon name="check-empty"></widget-icon>
                 <br></br>
-                 
+
                 <span class="description" ng-if="item.beforeCase && !item.afterCase">You can attend this infosession before: {{item.beforeCase}}</span>
                 <span class="description" ng-if="item.afterCase && !item.beforeCase">You can attend this infosession after: {{item.afterCase}}</span>
                 <span class="description" ng-if="item.afterCase && item.beforeCase">You can attend this infosession between: {{item.afterCase}} and {{item.beforeCase}}</span>
-                 
-             </p>
+
+            </p>
         </widget-cell>
     </widget-row>
 </script>
