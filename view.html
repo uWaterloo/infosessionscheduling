@@ -5,6 +5,13 @@
         </widget-cell>
     </widget-row>
 
+    
+    <!-- WIDGET PREVIOUS NEXT CONTROLS --> 
+<widget-list-controls 
+	prev-click="prevItem" 		next-click="nextItem" 
+	prev-text="Previous Item" 	next-text="Next Item"
+    original-item="item.value"></widget-list-controls>
+<!-- WIDGET PREVIOUS NEXT CONTROLS -->
     <widget-row>
         <widget-cell>
             <h2>{{data.value.message}}</h2>
@@ -18,7 +25,7 @@
                 <span class="description" ng-if="item.afterCase && !item.beforeCase">You can attend this infosession after: {{item.afterCase}}</span>
                 <span class="description" ng-if="item.afterCase && item.beforeCase">You can attend this infosession between: {{item.afterCase}} and {{item.beforeCase}}</span>
                  
-            </p>
+                    </p>
         </widget-cell>
     </widget-row>
 </script>
