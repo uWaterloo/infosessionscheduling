@@ -88,6 +88,8 @@ angular.module('portalApp')
         // Show main view in the first column
         $scope.portalHelpers.showView('main.html', 1);
     
+    	console.log(homeSettings.user);	
+    
      //Todays date
         var currentTime = new Date();
     	var month=currentTime.getMonth()+1;
