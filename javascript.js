@@ -35,8 +35,8 @@ angular.module('portalApp')
         var tomorrowsdate = year + "-" + month + "-" + tomorrowsDay;
 		//console.log(todaysdate);
     	//$scope.todaysdate = totaldate;
-    	$scope.todaysdate = "2016-03-01";
-    	var todaysdate = "2016-03-01";
+    	$scope.todaysdate = "2016-02-10";
+    	var todaysdate = "2016-02-10";
     
     	var validInfoSessions = [];
     
@@ -49,7 +49,7 @@ angular.module('portalApp')
             var infosessions = result.data;
             // console.log(result.data);
             // 
-            $scope.portalHelpers.getApiData('student/meets?start=' + "2016-03-01" + '&end=' + "2016-03-02").then(function (result) {    		
+            $scope.portalHelpers.getApiData('student/meets?start=' + "2016-02-10" + '&end=' + "2016-02-11").then(function (result) {    		
 	            var classes = result.data;
 	            // console.log(infosessions.length);                
 	            for(var i = 0; i < infosessions.length; i++){
