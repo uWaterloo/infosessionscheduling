@@ -35,10 +35,11 @@ angular.module('portalApp')
         var tomorrowsdate = year + "-" + month + "-" + tomorrowsDay;
 		//console.log(todaysdate);
     	//$scope.todaysdate = totaldate;
-    	$scope.todaysdate = "2016-02-10";
-    	var todaysdate = "2016-02-10";
+    	$scope.todaysdate = "2016-02-05";
+    	var todaysdate = "2016-02-05";
     
-    	var validInfoSessions = [];
+    	$scope.validInfoSessions = [];
+    
     
 
         var url = 'https://api.uwaterloo.ca/v2/terms/1163/infosessions.json?key=36802f2c7eab5943ece0bcf8eec07d5a';
@@ -49,7 +50,7 @@ angular.module('portalApp')
             var infosessions = result.data;
             // console.log(result.data);
             // 
-            $scope.portalHelpers.getApiData('student/meets?start=' + "2016-02-10" + '&end=' + "2016-02-11").then(function (result) {    		
+            $scope.portalHelpers.getApiData('student/meets?start=' + "2016-02-05" + '&end=' + "2016-02-06").then(function (result) {    		
 	            var classes = result.data;
 	            // console.log(infosessions.length);                
 	            for(var i = 0; i < infosessions.length; i++){
@@ -63,20 +64,20 @@ angular.module('portalApp')
                         //BEFORE CASE
 	                 if(j==0 && currentInfoSession.end_time < currentClass.startDate.substring(11)){
                         console.log('before case');
-						validInfoSessions.push(currentInfoSession);
+						$scope.validInfoSessions.push(currentInfoSession);
 	                 }               
                         //MIDDLE CASE                        
                      if(j!=classes.length-1 && currentInfoSession.start_time > currentClass.endDate.substring(11) &&
                        currentInfoSession.end_time <= nextClass.startDate.substring(11)){
                         console.log('middle case');
                         console.log(currentInfoSession.employer);
-                      	validInfoSessions.push(currentInfoSession);   
+                      	$scope.validInfoSessions.push(currentInfoSession);   
                      }
                         
                      	//END CASE
-                     if(j == classes.length-1 && currentInfoSession.start_time >= currenClass.startDate.substring(11)){
+                     if(j == classes.length-1 && currentInfoSession.start_time >= currentClass.startDate.substring(11)){
                       	console.log('END CASE');
-                        validInfoSessions.push(currentInfoSession);                         
+                        $scope.validInfoSessions.push(currentInfoSession);                         
                      }
                          
                         
