@@ -87,6 +87,7 @@ angular.module('portalApp')
                       	console.log('END CASE');
 						var course = currentClass.subject_code + " " + currentClass.catalog;                         
                         currentInfoSession.afterCase = course;
+                         console.log(currentInfoSession);
                         $scope.validInfoSessions.push(currentInfoSession);                         
                      }
                          
