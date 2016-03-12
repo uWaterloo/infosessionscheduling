@@ -6,3 +6,10 @@
 .text-center {
     text-align: center;
 }
+
+.dis {
+	font-size: 12px;
+    position: absolute;
+    bottom: 0;
+        
+}
