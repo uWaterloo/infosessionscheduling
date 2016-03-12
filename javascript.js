@@ -16,17 +16,8 @@ angular.module('portalApp')
 
         // Show main view in the first column
         $scope.portalHelpers.showView('main.html', 1);
-
-        var url = 'https://api.uwaterloo.ca/v2/terms/1163/infosessions.json?key=36802f2c7eab5943ece0bcf8eec07d5a';
-        // http.get FUNCTION 
-        $http.get(url).success(function(result) {
-            // Handle result 
-            $scope.infosessions = result.data;
-            console.log(result.data);
-        });
     
-    	
-        //Todays date
+     //Todays date
         var currentTime = new Date();
     	var month=currentTime.getMonth()+1;
     	var year=currentTime.getFullYear();
@@ -44,15 +35,43 @@ angular.module('portalApp')
         var tomorrowsdate = year + "-" + month + "-" + tomorrowsDay;
 		//console.log(todaysdate);
     	//$scope.todaysdate = totaldate;
-    	$scope.todaysdate = "2016-03-16";
+    	$scope.todaysdate = "2016-03-07";
+    
+    	var validInfoSessions = [];
+    
+
+        var url = 'https://api.uwaterloo.ca/v2/terms/1163/infosessions.json?key=36802f2c7eab5943ece0bcf8eec07d5a';
+        // http.get FUNCTION 
+        $http.get(url).success(function(result) {
+            // Handle result 
+            $scope.infosessions = result.data;
+            var infosessions = result.data;
+            // console.log(result.data);
+            // 
+            $scope.portalHelpers.getApiData('student/meets?start=' + "2016-03-07" + '&end=' + "2016-03-08").then(function (result) {    		
+	            var classes = result.data;
+	            console.log(infosessions.length);                
+	            for(var i = 0; i < infosessions.length; i++){
+	             if(infosessions[i].date != todaysdate){
+	                 continue;
+	             }
+	                var currentInfoSession = $scope.infosessions[i];                    
+	                for(var j = 0; j < classes.length; j++){
+	                 var currentClass = classes[j];
+	                 if(j==0){
+	                	if(currentInfoSession.end_time < currentClass.startDate.substring(11)){
+	                         console.log('valid info session');
+	                     }
+	                 }                                                                  
+	                }                                              
+	            }
+	    	});
+        });
     
     	
+       
     
     
-    	$scope.portalHelpers.getApiData('student/meets?start=' + "2016-03-16" + '&end=' + "2016-03-17").then(function (result) {
-    		//console.log('meets data: ', result);
-            var classes = result.data;
-    	});
     
     
     
