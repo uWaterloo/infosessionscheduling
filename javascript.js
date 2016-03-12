@@ -23,23 +23,35 @@ angular.module('portalApp')
             // Handle result 
             $scope.mydata = result.data;
         });
-        // http.get FUNCTION 
+    
+    	
         //Todays date
         var currentTime = new Date();
     	var month=currentTime.getMonth()+1;
     	var year=currentTime.getFullYear();
     	var day=currentTime.getDate();
+    	var tomorrowsDay = day + 1;
+    
     	if (day<10){
-            day='0'+day;
+            day='0'+day;            
         }
     	if (month<10){
             month='0'+month;
         }
   
-    	var totaldate=year+"-"+month+"-"+day
-		console.log(totaldate);
-    	//$scope.totaldate = totaldate;
-    	$scope.totaldate = "2016-03-07";
+    	var todaysdate=year+"-"+month+"-"+day
+        var tomorrowsdate = year + "-" + month + "-" + tomorrowsDay;
+		//console.log(todaysdate);
+    	//$scope.todaysdate = totaldate;
+    	$scope.todaysdate = "2016-03-16";
+    
+    	
+    
+    
+    	$scope.portalHelpers.getApiData('student/meets?start=' + "2016-03-16" + '&end=' + "2016-03-17").then(function (result) {
+    		//console.log('meets data: ', result);
+            var classes = result.data;
+    	});
     	
     }])
     // Factory maintains the state of the widget
