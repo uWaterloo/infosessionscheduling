@@ -23,7 +23,8 @@ angular.module('portalApp')
 	             if(infosessions[i].date != todaysdate){
 	                 continue;
 	             }                    
-	                var currentInfoSession = infosessions[i];                    
+	                var currentInfoSession = infosessions[i];   
+                    currentInfoSession.checked = false;
 	                for(var j = 0; j < classes.length; j++){
 	                 var currentClass = classes[j];
                      //console.log(currentClass);
@@ -85,6 +86,12 @@ angular.module('portalApp')
         });
     
             
+        }
+        
+    
+    
+    	$scope.switchChecked = function(item){
+            item.checked = !item.checked;
         }
         
         
