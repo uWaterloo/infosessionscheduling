@@ -38,6 +38,8 @@ angular.module('portalApp')
   
     	var totaldate=year+"-"+month+"-"+day
 		console.log(totaldate);
+    	//$scope.totaldate = totaldate;
+    	$scope.totaldate = "2016-03-07";
     	
     }])
     // Factory maintains the state of the widget
