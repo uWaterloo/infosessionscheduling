@@ -15,7 +15,7 @@
 
 
         <widget-cell>            
-            <p ng-if="validInfoSessions.length == 0">Loading...</p>
+            <p class="loading text-center" ng-if="validInfoSessions.length == 0">Loading...</p>
             <p ng-repeat="item in validInfoSessions" ng-if="item.date==todaysdate">
                 <a href="{{item.link}}"><b> {{item.employer}} </b> </a> <span ng-if="item.targeted">*</span>
                 <widget-icon ng-if="!item.checked" name="check-empty" ng-click="switchChecked(item)"></widget-icon>
@@ -31,7 +31,7 @@
 
 
             </p>
-            <span class="dis"> *Related to faculty </span>
+            <span class="dis" ng-if="validInfoSessions.length >0"> *Related to faculty </span>
         </widget-cell>
     </widget-row>
 </script>
