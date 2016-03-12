@@ -17,7 +17,7 @@
         <widget-cell>
             <p ng-if="validInfoSessions.length == 0">Loading</p>
             <p ng-repeat="item in validInfoSessions" ng-if="item.date==todaysdate">
-                <a href="{{item.link}}"> {{item.employer}} </a>
+                <a href="{{item.link}}"> {{item.employer}} </a> <span ng-if="item.targeted">*</span>
                 <widget-icon name="check-empty"></widget-icon>  
                 <br>
 
