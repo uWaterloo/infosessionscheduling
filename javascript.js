@@ -65,18 +65,27 @@ angular.module('portalApp')
 	                 if(j==0 && currentInfoSession.end_time < currentClass.startDate.substring(11)){
                         console.log('before case');
 						$scope.validInfoSessions.push(currentInfoSession);
+                        var course = currentClass.subject_code + " " + currentClass.catalog;
+                        currentInfoSession.beforeCase = course;
 	                 }               
                         //MIDDLE CASE                        
                      if(j!=classes.length-1 && currentInfoSession.start_time > currentClass.endDate.substring(11) &&
                        currentInfoSession.end_time <= nextClass.startDate.substring(11)){
                         console.log('middle case');
                         console.log(currentInfoSession.employer);
+                        var course = currentClass.subject_code + " " + currentClass.catalog;
+                        var nextCourse = nextClass.subject_code + " " + nextClass.catalog;                         
+                        currentInfoSession.beforeCase = course;
+                        currentInfoSession.afterCase = nextCourse;
                       	$scope.validInfoSessions.push(currentInfoSession);   
+                        
                      }
                         
                      	//END CASE
                      if(j == classes.length-1 && currentInfoSession.start_time >= currentClass.startDate.substring(11)){
                       	console.log('END CASE');
+						var nextCourse = nextClass.subject_code + " " + nextClass.catalog;                         
+                        currentInfoSession.afterCase = nextCourse;
                         $scope.validInfoSessions.push(currentInfoSession);                         
                      }
                          
