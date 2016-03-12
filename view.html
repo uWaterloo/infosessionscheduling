@@ -10,10 +10,14 @@
             <h2>{{data.value.message}}</h2>
 
             <p ng-repeat="item in validInfoSessions" ng-if="item.date==todaysdate">
-                <a href= "{{item.link}}"> {{item.employer}} </a>                 
-                <span ng-if="item.beforeCase && !item.afterCase">BEFORE CASE: {{item.beforeCase}}</span>
-                <span ng-if="item.afterCase && !item.beforeCase">AFTER CASE: {{item.afterCase}}</span>
-                <span ng-if="item.afterCase && item.beforeCase">MIDDLE CASE: {{item.afterCase}}-{{item.beforeCase}}</span>
+                <a href= "{{item.link}}"> {{item.employer}} </a> 
+                <widget-icon name="check-empty"></widget-icon>
+                <br>
+                 
+                <span class="description" ng-if="item.beforeCase && !item.afterCase">You can attend this infosession before: {{item.beforeCase}}</span>
+                <span class="description" ng-if="item.afterCase && !item.beforeCase">You can attend this infosession after: {{item.afterCase}}</span>
+                <span class="description" ng-if="item.afterCase && item.beforeCase">You can attend this infosession between: {{item.afterCase}} and {{item.beforeCase}}</span>
+                 
             </p>
         </widget-cell>
     </widget-row>
