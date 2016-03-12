@@ -8,6 +8,8 @@
 		<widget-row>
             <widget-cell>
                 <h2>{{data.value.message}}</h2>
+                 
+                <p ng-repeat= "item in mydata" ng-if> {{item.date}} </p>                
             </widget-cell>
         </widget-row>
 </script>
