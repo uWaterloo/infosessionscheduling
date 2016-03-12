@@ -9,7 +9,12 @@
         <widget-cell>
             <h2>{{data.value.message}}</h2>
 
-            <p ng-repeat="item in validInfoSessions" ng-if="item.date==todaysdate"> <a href= "{{item.link}}"> {{item.employer}} </a> </p>
+            <p ng-repeat="item in validInfoSessions" ng-if="item.date==todaysdate">
+                <a href= "{{item.link}}"> {{item.employer}} </a>                 
+                <span ng-if="item.beforeCase && !item.afterCase">BEFORE CASE: {{item.beforeCase}}</span>
+                <span ng-if="item.afterCase && !item.beforeCase">AFTER CASE: {{item.afterCase}}</span>
+                <span ng-if="item.afterCase && item.beforeCase">MIDDLE CASE: {{item.afterCase}}-{{item.beforeCase}}</span>
+            </p>
         </widget-cell>
     </widget-row>
 </script>
