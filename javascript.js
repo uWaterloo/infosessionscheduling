@@ -2,47 +2,9 @@ angular.module('portalApp')
 
 // Widget controller - runs every time widget is shown
 .controller('infosessionschedulingCtrl', ['$scope', '$http', '$q', 'infosessionschedulingFactory', function($scope, $http, $q, infosessionschedulingFactory) {
-
-        // Widget Configuration
-        $scope.portalHelpers.config = {
-            // make 'widgetMenu.html' the template for the top right menu
-            "widgetMenu": "widgetMenu.html"
-        };
-
-        // Import variables and functions from service
-
-        // initialize the service
-        infosessionschedulingFactory.init($scope);
-
-        // Show main view in the first column
-        $scope.portalHelpers.showView('main.html', 1);
     
-     //Todays date
-        var currentTime = new Date();
-    	var month=currentTime.getMonth()+1;
-    	var year=currentTime.getFullYear();
-    	var day=currentTime.getDate();
-    	var tomorrowsDay = day + 1;
-    
-    	if (day<10){
-            day='0'+day;            
-        }
-    	if (month<10){
-            month='0'+month;
-        }
-  
-    	var todaysdate=year+"-"+month+"-"+day
-        var tomorrowsdate = year + "-" + month + "-" + tomorrowsDay;
-		//console.log(todaysdate);
-    	//$scope.todaysdate = totaldate;
-    	$scope.todaysdate = "2016-02-05";
-    	var todaysdate = "2016-02-05";
-    
-    	$scope.validInfoSessions = [];
-    
-    
-
-        var url = 'https://api.uwaterloo.ca/v2/terms/1163/infosessions.json?key=36802f2c7eab5943ece0bcf8eec07d5a';
+    	var findInfoSessions = function(){
+                     var url = 'https://api.uwaterloo.ca/v2/terms/1163/infosessions.json?key=36802f2c7eab5943ece0bcf8eec07d5a';
         // http.get FUNCTION 
         $http.get(url).success(function(result) {
             // Handle result 
@@ -100,15 +62,59 @@ angular.module('portalApp')
 	    	});
         });
     
-    	
-       
+            
+        }
+
+        
+        
+    	$scope.nextItem = function(){
+            //tomorrow
+        }
+        
+        $scope.prevItem = function(){
+            //yesterday
+        }
     
+        // Widget Configuration
+        $scope.portalHelpers.config = {
+            // make 'widgetMenu.html' the template for the top right menu
+            "widgetMenu": "widgetMenu.html"
+        };
+
+        // Import variables and functions from service
+
+        // initialize the service
+        infosessionschedulingFactory.init($scope);
+
+        // Show main view in the first column
+        $scope.portalHelpers.showView('main.html', 1);
     
+     //Todays date
+        var currentTime = new Date();
+    	var month=currentTime.getMonth()+1;
+    	var year=currentTime.getFullYear();
+    	var day=currentTime.getDate();
+    	var tomorrowsDay = day + 1;
     
+    	if (day<10){
+            day='0'+day;            
+        }
+    	if (month<10){
+            month='0'+month;
+        }
+  
+    	var todaysdate=year+"-"+month+"-"+day
+        var tomorrowsdate = year + "-" + month + "-" + tomorrowsDay;
+		//console.log(todaysdate);
+    	//$scope.todaysdate = totaldate;
+    	$scope.todaysdate = "2016-02-05";
+    	var todaysdate = "2016-02-05";
     
+    	$scope.validInfoSessions = [];
     
-    
-    	
+    	findInfoSessions();
+   
+    	    	
     }])
     // Factory maintains the state of the widget
     .factory('infosessionschedulingFactory', ['$http', '$rootScope', '$filter', '$q', function($http, $rootScope, $filter, $q) {
