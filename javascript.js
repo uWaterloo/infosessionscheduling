@@ -69,6 +69,7 @@ angular.module('portalApp')
                      if(j!=classes.length-1 && currentInfoSession.start_time > currentClass.endDate.substring(11) &&
                        currentInfoSession.end_time <= nextClass.startDate.substring(11)){
                         console.log('middle case');
+                        console.log(currentInfoSession.employer);
                       	validInfoSessions.push(currentInfoSession);   
                      }
                         
