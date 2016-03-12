@@ -55,8 +55,8 @@ angular.module('portalApp')
 	            for(var i = 0; i < infosessions.length; i++){
 	             if(infosessions[i].date != todaysdate){
 	                 continue;
-	             }
-	                var currentInfoSession = $scope.infosessions[i];                    
+	             }                    
+	                var currentInfoSession = infosessions[i];                    
 	                for(var j = 0; j < classes.length; j++){
 	                 var currentClass = classes[j];
                      var nextClass = classes[j+1];
@@ -65,8 +65,8 @@ angular.module('portalApp')
                         console.log('before case');
 						validInfoSessions.push(currentInfoSession);
 	                 }               
-                        //MIDDLE CASE
-                     if(currentInfoSession.start_time > currentClass.endDate.substring(11) &&
+                        //MIDDLE CASE                        
+                     if(j!=classes.length-1 && currentInfoSession.start_time > currentClass.endDate.substring(11) &&
                        currentInfoSession.end_time <= nextClass.startDate.substring(11)){
                         console.log('middle case');
                       	validInfoSessions.push(currentInfoSession);   
