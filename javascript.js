@@ -3,6 +3,12 @@ angular.module('portalApp')
 // Widget controller - runs every time widget is shown
 .controller('infosessionschedulingCtrl', ['$scope', '$http', '$q', 'infosessionschedulingFactory', function($scope, $http, $q, infosessionschedulingFactory) {
     
+    	var result = document.getElementsByClassName("widgetTitle");
+    	result[0].className += " text-center";
+        	console.log(result);
+
+
+    
     	var findInfoSessions = function(){
                      var url = 'https://api.uwaterloo.ca/v2/terms/1163/infosessions.json?key=36802f2c7eab5943ece0bcf8eec07d5a';
         // http.get FUNCTION 
