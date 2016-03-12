@@ -60,6 +60,7 @@ angular.module('portalApp')
 	                var currentInfoSession = infosessions[i];                    
 	                for(var j = 0; j < classes.length; j++){
 	                 var currentClass = classes[j];
+                     console.log(currentClass);
                      var nextClass = classes[j+1];
                         //BEFORE CASE
 	                 if(j==0 && currentInfoSession.end_time < currentClass.startDate.substring(11)){
@@ -84,8 +85,8 @@ angular.module('portalApp')
                      	//END CASE
                      if(j == classes.length-1 && currentInfoSession.start_time >= currentClass.startDate.substring(11)){
                       	console.log('END CASE');
-						var nextCourse = nextClass.subject_code + " " + nextClass.catalog;                         
-                        currentInfoSession.afterCase = nextCourse;
+						var course = currentClass.subject_code + " " + currentClass.catalog;                         
+                        currentInfoSession.afterCase = course;
                         $scope.validInfoSessions.push(currentInfoSession);                         
                      }
                          
