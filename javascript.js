@@ -17,6 +17,16 @@ angular.module('portalApp')
 
 	// Show main view in the first column
 	$scope.portalHelpers.showView('main.html', 1);
+    
+    var url = 'https://api.uwaterloo.ca/v2/terms/1163/infosessions.json?key=36802f2c7eab5943ece0bcf8eec07d5a';
+    // http.get FUNCTION 
+	$http.get(url).success(function(result) { 
+		// Handle result 
+		console.log(result);
+        $scope.mydata = result.data;
+	}); 
+// http.get FUNCTION 
+
 	
 }])
 // Factory maintains the state of the widget
