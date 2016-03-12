@@ -64,7 +64,6 @@ angular.module('portalApp')
     
             
         }
-
         
         
     	$scope.nextItem = function(){
